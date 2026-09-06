@@ -23,34 +23,46 @@
   },
   {
     "id": "bags-1",
-    "name": "תיק גב יומיומי",
+    "name": "תיק לואי ויטון",
     "category": "bags",
-    "price": "89",
+    "price": "108",
     "currency": "₪",
-    "description": "תיק גב מרווח לשימוש יומיומי, כולל תא נפרד למחשב נייד, בד עמיד למים ורצועות מרופדות לנוחות מרבית.",
+    "description": "תיק לואי ויטון.",
     "images": [
       "images/bags-1-1.jpg",
       "images/bags-1-2.jpg",
       "images/bags-1-3.jpg",
       "images/bags-1-4.jpg",
-      "images/bags-1-5.jpg"
+      "images/bags-1-5.jpg",
+      "images/bags-1-6.jpg",
+      "images/bags-1-7.jpg",
+      "images/bags-1-8.jpg",
+      "images/bags-1-9.jpg",
+      "images/bags-1-10.jpg",
+      "images/bags-1-11.jpg",
+      "images/bags-1-12.jpg",
+      "images/bags-1-13.jpg",
+      "images/bags-1-14.jpg",
+      "images/bags-1-15.jpg"
     ],
-    "buyLink": "https://example.com/aliexpress-bag-link"
+    "buyLink": "https://s.flylinking.com/g-Q3IDODFPKM"
   },
   {
     "id": "watches-1",
-    "name": "שעון יד קלאסי",
+    "name": "שעון רולקס",
     "category": "watches",
-    "price": "159",
+    "price": "240",
     "currency": "₪",
-    "description": "שעון יד אלגנטי עם רצועת עור, מנגנון קווארץ מדויק ועיצוב מינימליסטי המתאים לכל אירוע.",
+    "description": "שעון רולקס גודל 36 ממ \n מגיע עם קופסא מקורית בתוספת 60₪.",
     "images": [
       "images/watches-1-1.jpg",
       "images/watches-1-2.jpg",
       "images/watches-1-3.jpg",
       "images/watches-1-4.jpg",
-      "images/watches-1-5.jpg"
+      "images/watches-1-5.jpg",
+      "images/watches-1-6.jpg",
+      "images/watches-1-7.jpg"
     ],
-    "buyLink": "https://example.com/aliexpress-watch-link"
+    "buyLink": "https://s.flylinking.com/g-CMXDU1Z2T5"
   }
 ]
