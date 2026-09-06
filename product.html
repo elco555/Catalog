@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מוצר - החנות שלי</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <h1>החנות שלי</h1>
+</header>
+
+<a href="index.html" class="back-link">→ חזרה לכל המוצרים</a>
+
+<div class="product-page" id="product-container">
+  <!-- יטען אוטומטית -->
+</div>
+
+<footer class="site-footer">
+  <p>© 2026 החנות שלי. כל הזכויות שמורות.</p>
+</footer>
+
+<script>
+async function loadProduct() {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+
+  const res = await fetch('products.json');
+  const products = await res.json();
+  const product = products.find(p => p.id === id);
+
+  if (!product) {
+    document.getElementById('product-container').innerHTML = '<p>המוצר לא נמצא</p>';
+    return;
+  }
+
+  const container = document.getElementById('product-container');
+  container.innerHTML = `
+    <div class="gallery">
+      <div class="gallery-main">
+        <img id="main-image" src="${product.images[0]}" alt="${product.name}">
+      </div>
+      <div class="gallery-thumbs">
+        ${product.images.map((img, i) => `<img src="${img}" class="${i === 0 ? 'active-thumb' : ''}" onclick="changeMainImage('${img}', this)">`).join('')}
+      </div>
+    </div>
+    <div class="product-details">
+      <h2>${product.name}</h2>
+      <div class="product-price">${product.price} ${product.currency}</div>
+      <p>${product.description}</p>
+      <a href="#" class="buy-btn" onclick="trackClick('${product.id}', '${product.buyLink}'); return false;">קנה עכשיו</a>
+    </div>
+  `;
+}
+
+function changeMainImage(src, thumb) {
+  document.getElementById('main-image').src = src;
+  document.querySelectorAll('.gallery-thumbs img').forEach(t => t.classList.remove('active-thumb'));
+  thumb.classList.add('active-thumb');
+}
+
+function trackClick(productId, buyLink) {
+  console.log('Click tracked for product:', productId);
+  window.open(buyLink, '_blank');
+}
+
+loadProduct();
+</script>
+</body>
+</html>
