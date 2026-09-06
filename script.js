@@ -1,9 +1,38 @@
 let productsData = [];
 
+const categoryNames = {
+  all: 'הכל',
+  shoes: 'נעליים',
+  bags: 'תיקים',
+  watches: 'שעונים'
+};
+
 async function loadProducts() {
-  const res = await fetch('products.json');
-  productsData = await res.json();
-  renderProducts('all');
+  showSkeleton();
+  try {
+    const res = await fetch('products.json');
+    productsData = await res.json();
+    renderProducts('all');
+  } catch (err) {
+    const grid = document.getElementById('products-grid');
+    grid.innerHTML = '<p class="empty-state">שגיאה בטעינת המוצרים. נסה לרענן את הדף.</p>';
+    console.error(err);
+  }
+}
+
+function showSkeleton() {
+  const grid = document.getElementById('products-grid');
+  grid.innerHTML = '';
+  for (let i = 0; i < 6; i++) {
+    const skeleton = document.createElement('div');
+    skeleton.className = 'skeleton-card';
+    skeleton.innerHTML = `
+      <div class="skeleton-img"></div>
+      <div class="skeleton-line"></div>
+      <div class="skeleton-line" style="width:40%"></div>
+    `;
+    grid.appendChild(skeleton);
+  }
 }
 
 function renderProducts(category) {
@@ -14,11 +43,19 @@ function renderProducts(category) {
     ? productsData
     : productsData.filter(p => p.category === category);
 
+  if (filtered.length === 0) {
+    grid.innerHTML = '<p class="empty-state">לא נמצאו מוצרים בקטגוריה זו.</p>';
+    return;
+  }
+
   filtered.forEach(product => {
     const card = document.createElement('div');
     card.className = 'product-card';
     card.innerHTML = `
-      <img src="${product.images[0]}" alt="${product.name}" onclick="goToProduct('${product.id}')">
+      <div class="product-thumb" onclick="goToProduct('${product.id}')">
+        <img src="${product.images[0]}" alt="${product.name}">
+        <span class="product-badge">${categoryNames[product.category] || ''}</span>
+      </div>
       <div class="product-info">
         <h3>${product.name}</h3>
         <div class="product-price">${product.price} ${product.currency}</div>

@@ -4,13 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>מוצר - החנות שלי</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header class="site-header">
-  <h1>החנות שלי</h1>
+  <div class="header-inner">
+    <h1>✨ החנות שלי</h1>
+  </div>
 </header>
+
+<nav class="breadcrumb" id="breadcrumb">
+  <a href="index.html">החנות שלי</a>
+</nav>
 
 <a href="index.html" class="back-link">→ חזרה לכל המוצרים</a>
 
@@ -23,6 +32,12 @@
 </footer>
 
 <script>
+const categoryNames = {
+  shoes: 'נעליים',
+  bags: 'תיקים',
+  watches: 'שעונים'
+};
+
 async function loadProduct() {
   const params = new URLSearchParams(window.location.search);
   const id = params.get('id');
@@ -32,9 +47,20 @@ async function loadProduct() {
   const product = products.find(p => p.id === id);
 
   if (!product) {
-    document.getElementById('product-container').innerHTML = '<p>המוצר לא נמצא</p>';
+    document.getElementById('product-container').innerHTML = '<p style="padding:20px;">המוצר לא נמצא</p>';
     return;
   }
+
+  document.title = product.name + ' - החנות שלי';
+
+  const breadcrumb = document.getElementById('breadcrumb');
+  breadcrumb.innerHTML = `
+    <a href="index.html">החנות שלי</a>
+    &nbsp;›&nbsp;
+    <a href="index.html">${categoryNames[product.category] || ''}</a>
+    &nbsp;›&nbsp;
+    <span>${product.name}</span>
+  `;
 
   const container = document.getElementById('product-container');
   container.innerHTML = `
