@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>מוצר - החנות שלי</title>
+<title>מוצר - עולם המותגים</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,13 +12,30 @@
 <body>
 
 <header class="site-header">
+  <button class="hamburger-btn" id="hamburger-btn" aria-label="פתח תפריט קטגוריות">
+    <span></span><span></span><span></span>
+  </button>
+  <a href="about.html" class="about-link">אודות</a>
   <div class="header-inner">
-    <h1>✨ החנות שלי</h1>
+    <h1>✨ עולם המותגים</h1>
   </div>
 </header>
 
+<div class="drawer-overlay" id="drawer-overlay"></div>
+<nav class="category-drawer" id="category-drawer">
+  <div class="drawer-header">
+    <h2>קטגוריות</h2>
+    <button class="drawer-close" id="drawer-close" aria-label="סגור">✕</button>
+  </div>
+  <a href="index.html?category=all" class="drawer-link" data-category="all">הכל</a>
+  <a href="index.html?category=shoes" class="drawer-link" data-category="shoes">נעליים</a>
+  <a href="index.html?category=bags" class="drawer-link" data-category="bags">תיקים</a>
+  <a href="index.html?category=clothes" class="drawer-link" data-category="clothes">בגדים</a>
+  <a href="index.html?category=watches" class="drawer-link" data-category="watches">שעונים</a>
+</nav>
+
 <nav class="breadcrumb" id="breadcrumb">
-  <a href="index.html">החנות שלי</a>
+  <a href="index.html">עולם המותגים</a>
 </nav>
 
 <a href="index.html" class="back-link">→ חזרה לכל המוצרים</a>
@@ -27,72 +44,20 @@
   <!-- יטען אוטומטית -->
 </div>
 
+<div class="lightbox-overlay" id="lightbox-overlay">
+  <div class="lightbox-toolbar">
+    <button class="lightbox-btn" id="lightbox-fullscreen" title="מסך מלא">⛶</button>
+    <button class="lightbox-btn" id="lightbox-close" title="סגור">✕</button>
+  </div>
+  <div class="lightbox-stage">
+    <img id="lightbox-img" src="" alt="">
+  </div>
+</div>
+
 <footer class="site-footer">
-  <p>© 2026 החנות שלי. כל הזכויות שמורות.</p>
+  <p>© 2026 עולם המותגים. כל הזכויות שמורות. <a href="about.html#contact" class="footer-contact">צור קשר</a></p>
 </footer>
 
-<script>
-const categoryNames = {
-  shoes: 'נעליים',
-  bags: 'תיקים',
-  watches: 'שעונים'
-};
-
-async function loadProduct() {
-  const params = new URLSearchParams(window.location.search);
-  const id = params.get('id');
-
-  const res = await fetch('products.json');
-  const products = await res.json();
-  const product = products.find(p => p.id === id);
-
-  if (!product) {
-    document.getElementById('product-container').innerHTML = '<p style="padding:20px;">המוצר לא נמצא</p>';
-    return;
-  }
-
-  document.title = product.name + ' - החנות שלי';
-
-  const breadcrumb = document.getElementById('breadcrumb');
-  breadcrumb.innerHTML = `
-    <a href="index.html">החנות שלי</a>
-    &nbsp;›&nbsp;
-    <a href="index.html">${categoryNames[product.category] || ''}</a>
-    &nbsp;›&nbsp;
-    <span>${product.name}</span>
-  `;
-
-  const container = document.getElementById('product-container');
-  container.innerHTML = `
-    <div class="gallery">
-      <div class="gallery-main">
-        <img id="main-image" src="${product.images[0]}" alt="${product.name}">
-      </div>
-      <div class="gallery-thumbs">
-        ${product.images.map((img, i) => `<img src="${img}" class="${i === 0 ? 'active-thumb' : ''}" onclick="changeMainImage('${img}', this)">`).join('')}
-      </div>
-    </div>
-    <div class="product-details">
-      <h2>${product.name}</h2>
-      <div class="product-price">${product.price} ${product.currency}</div>
-      <p>${product.description}</p>
-      <a href="#" class="buy-btn" onclick="trackClick('${product.id}', '${product.buyLink}'); return false;">קנה עכשיו</a>
-    </div>
-  `;
-}
-
-function changeMainImage(src, thumb) {
-  document.getElementById('main-image').src = src;
-  document.querySelectorAll('.gallery-thumbs img').forEach(t => t.classList.remove('active-thumb'));
-  thumb.classList.add('active-thumb');
-}
-
-function trackClick(productId, buyLink) {
-  console.log('Click tracked for product:', productId);
-  window.open(buyLink, '_blank');
-}
-
-loadProduct();
-</script>
+<script src="script.js"></script>
 </body>
 </html>

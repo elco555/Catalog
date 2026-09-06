@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>אודות ויצירת קשר - עולם המותגים</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <button class="hamburger-btn" id="hamburger-btn" aria-label="פתח תפריט קטגוריות">
+    <span></span><span></span><span></span>
+  </button>
+  <a href="index.html" class="about-link">לקטלוג</a>
+  <div class="header-inner">
+    <h1>✨ עולם המותגים</h1>
+    <p class="subtitle">אודות ויצירת קשר</p>
+  </div>
+</header>
+
+<div class="drawer-overlay" id="drawer-overlay"></div>
+<nav class="category-drawer" id="category-drawer">
+  <div class="drawer-header">
+    <h2>קטגוריות</h2>
+    <button class="drawer-close" id="drawer-close" aria-label="סגור">✕</button>
+  </div>
+  <a href="index.html?category=all" class="drawer-link" data-category="all">הכל</a>
+  <a href="index.html?category=shoes" class="drawer-link" data-category="shoes">נעליים</a>
+  <a href="index.html?category=bags" class="drawer-link" data-category="bags">תיקים</a>
+  <a href="index.html?category=clothes" class="drawer-link" data-category="clothes">בגדים</a>
+  <a href="index.html?category=watches" class="drawer-link" data-category="watches">שעונים</a>
+</nav>
+
+<a href="index.html" class="back-link">→ חזרה לכל המוצרים</a>
+
+<div class="about-page">
+  <section class="about-section">
+    <h2>איך להשתמש באתר</h2>
+    <ol>
+      <li><strong>עיון בקטלוג:</strong> בעמוד הראשי מוצגים כל המוצרים בגריד. לחיצה על סמל שלוש הפסים בפינה הימנית העליונה פותחת תפריט קטגוריות (נעליים, תיקים, בגדים, שעונים) לסינון מהיר.</li>
+      <li><strong>צפייה במוצר:</strong> לחיצה על תמונת מוצר בקטלוג פותחת את עמוד המוצר עם תיאור מלא, מחיר וגלריית תמונות.</li>
+      <li><strong>הגדלת תמונות:</strong> בעמוד המוצר, לחיצה על התמונה הראשית פותחת אותה במסך מלא. אפשר להגדיל ולהקטין בלחיצה כפולה, בגלגלת העכבר, או בתנועת צביתה (Pinch) במסך מגע, ולגרור את התמונה כשהיא מוגדלת. יש גם כפתור להצגה במסך מלא מוחלט.</li>
+      <li><strong>רכישה:</strong> לחיצה על הכפתור "קנה עכשיו" פותחת בכרטיסייה חדשה את דף הרכישה של המוצר.</li>
+      <li><strong>יצירת קשר:</strong> בכל עמוד באתר, בתחתית הדף לצד הזכויות היוצרים, יש קישור "צור קשר" שמוביל לטופס הפנייה בעמוד זה.</li>
+    </ol>
+  </section>
+
+  <section class="about-section" id="contact">
+    <h2>צור קשר</h2>
+    <p class="contact-email-line">📧 אפשר גם לכתוב ישירות לכתובת: <a href="mailto:lhnn8229@gmail.com">lhnn8229@gmail.com</a></p>
+    <form class="contact-form" id="contact-form">
+      <div>
+        <label for="contact-name">שם מלא</label>
+        <input type="text" id="contact-name" name="name" required>
+      </div>
+      <div>
+        <label for="contact-email">אימייל לחזרה</label>
+        <input type="email" id="contact-email" name="email" required>
+      </div>
+      <div>
+        <label for="contact-message">הודעה</label>
+        <textarea id="contact-message" name="message" rows="5" required></textarea>
+      </div>
+      <button type="submit">שלח פנייה</button>
+      <p class="form-status" id="form-status"></p>
+    </form>
+  </section>
+</div>
+
+<footer class="site-footer">
+  <p>© 2026 עולם המותגים. כל הזכויות שמורות. <a href="about.html#contact" class="footer-contact">צור קשר</a></p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

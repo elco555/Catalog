@@ -12,17 +12,27 @@
 <body>
 
 <header class="site-header">
+  <button class="hamburger-btn" id="hamburger-btn" aria-label="פתח תפריט קטגוריות">
+    <span></span><span></span><span></span>
+  </button>
+  <a href="about.html" class="about-link">אודות</a>
   <div class="header-inner">
     <h1>✨ עולם המותגים</h1>
     <p class="subtitle">נעליים, תיקים ושעונים במחירים משתלמים</p>
   </div>
 </header>
 
-<nav class="filters">
-  <button class="filter-btn active" data-category="all">הכל</button>
-  <button class="filter-btn" data-category="shoes">נעליים</button>
-  <button class="filter-btn" data-category="bags">תיקים</button>
-  <button class="filter-btn" data-category="watches">שעונים</button>
+<div class="drawer-overlay" id="drawer-overlay"></div>
+<nav class="category-drawer" id="category-drawer">
+  <div class="drawer-header">
+    <h2>קטגוריות</h2>
+    <button class="drawer-close" id="drawer-close" aria-label="סגור">✕</button>
+  </div>
+  <a href="index.html?category=all" class="drawer-link" data-category="all">הכל</a>
+  <a href="index.html?category=shoes" class="drawer-link" data-category="shoes">נעליים</a>
+  <a href="index.html?category=bags" class="drawer-link" data-category="bags">תיקים</a>
+  <a href="index.html?category=clothes" class="drawer-link" data-category="clothes">בגדים</a>
+  <a href="index.html?category=watches" class="drawer-link" data-category="watches">שעונים</a>
 </nav>
 
 <main id="products-grid" class="products-grid">
@@ -30,7 +40,7 @@
 </main>
 
 <footer class="site-footer">
-  <p>© 2026 עולם המותגים. כל הזכויות שמורות.</p>
+  <p>© 2026 עולם המותגים. כל הזכויות שמורות. <a href="about.html#contact" class="footer-contact">צור קשר</a></p>
 </footer>
 
 <script src="script.js"></script>
