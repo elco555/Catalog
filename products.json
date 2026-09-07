@@ -1,67 +1,38 @@
 [
   {
-    "id": "shoes-1",
-    "name": "נעלי אדידס ",
+    "id": "shoes-zt13309",
+    "name": "נעלי ספורט קלאסיות",
     "category": "shoes",
-    "price": "195",
+    "price": 195,
     "currency": "₪",
-    "description": "נעלי אדידס מידות 36 - 45. \n מגיע עם קופסא.",
-    "images": [
-      "images/shoes/ZT13309-1.jpg",
-      "images/shoes/ZT13309-2.jpg",
-      "images/shoes/ZT13309-3.jpg",
-      "images/shoes/ZT13309-4.jpg",
-      "images/shoes/ZT13309-5.jpg",
-      "images/shoes/ZT13309-6.jpg",
-      "images/shoes/ZT13309-7.jpg",
-      "images/shoes/ZT13309-8.jpg",
-      "images/shoes/ZT13309-9.jpg",
-      "images/shoes/ZT13309-10.jpg"
-    ],
-    "buyLink": "https://s.flylinking.com/g-3D4MWB7ZDB"
+    "description": "נעליים בסטייל ספורטיבי, מידות 36-45. מגיעות עם קופסה מקורית.",
+    "imageFolder": "images/shoes",
+    "imageCode": "ZT13309",
+    "imageCount": 10,
+    "buyLink": "PASTE_PINYLINK_URL_HERE"
   },
   {
-    "id": "bags-1",
-    "name": "תיק לואי ויטון",
+    "id": "bags-zt13362",
+    "name": "תיק גב יומיומי",
     "category": "bags",
-    "price": "108",
+    "price": 89,
     "currency": "₪",
-    "description": "תיק לואי ויטון.",
-    "images": [
-      "images/bags/ZT13362-1.jpg",
-      "images/bags/ZT13362-2.jpg",
-      "images/bags/ZT13362-3.jpg",
-      "images/bags/ZT13362-4.jpg",
-      "images/bags/ZT13362-5.jpg",
-      "images/bags/ZT13362-6.jpg",
-      "images/bags/ZT13362-7.jpg",
-      "images/bags/ZT13362-8.jpg",
-      "images/bags/ZT13362-9.jpg",
-      "images/bags/ZT13362-10.jpg",
-      "images/bags/ZT13362-11.jpg",
-      "images/bags/ZT13362-12.jpg",
-      "images/bags/ZT13362-13.jpg",
-      "images/bags/ZT13362-14.jpg",
-      "images/bags/ZT13362-15.jpg"
-    ],
-    "buyLink": "https://s.flylinking.com/g-Q3IDODFPKM"
+    "description": "תיק גב מרווח לשימוש יומיומי, כולל תא נפרד למחשב נייד, בד עמיד למים ורצועות מרופדות לנוחות מרבית.",
+    "imageFolder": "images/bags",
+    "imageCode": "ZT13362",
+    "imageCount": 14,
+    "buyLink": "PASTE_PINYLINK_URL_HERE"
   },
   {
-    "id": "watches-1",
-    "name": "שעון רולקס",
+    "id": "watches-zt13481",
+    "name": "שעון יד קלאסי",
     "category": "watches",
-    "price": "240",
+    "price": 159,
     "currency": "₪",
-    "description": "שעון רולקס גודל 36 ממ \n מגיע עם קופסא מקורית בתוספת 60₪.",
-    "images": [
-      "images/watches/ZT13481-1.jpg",
-      "images/watches/ZT13481-2.jpg",
-      "images/watches/ZT13481-3.jpg",
-      "images/watches/ZT13481-4.jpg",
-      "images/watches/ZT13481-5.jpg",
-      "images/watches/ZT13481-6.jpg",
-      "images/watches/ZT13481-7.jpg"
-    ],
-    "buyLink": "https://s.flylinking.com/g-CMXDU1Z2T5"
+    "description": "שעון יד אלגנטי עם רצועת עור, מנגנון קווארץ מדויק ועיצוב מינימליסטי המתאים לכל אירוע.",
+    "imageFolder": "images/watches",
+    "imageCode": "ZT13481",
+    "imageCount": 7,
+    "buyLink": "PASTE_PINYLINK_URL_HERE"
   }
 ]
