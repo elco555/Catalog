@@ -5,34 +5,34 @@
     "category": "shoes",
     "price": 195,
     "currency": "₪",
-    "description": "נעליים בסטייל ספורטיבי, מידות 36-45. מגיעות עם קופסה מקורית.",
+    "description": "נעליים אדידס, מידות 36-45. מגיעות עם קופסה מקורית.",
     "imageFolder": "images/shoes",
     "imageCode": "ZT13309",
     "imageCount": 10,
-    "buyLink": "PASTE_PINYLINK_URL_HERE"
+    "buyLink": "https://s.flylinking.com/g-3D4MWB7ZDB"
   },
   {
     "id": "bags-zt13362",
     "name": "תיק גב יומיומי",
     "category": "bags",
-    "price": 89,
+    "price": 109,
     "currency": "₪",
-    "description": "תיק גב מרווח לשימוש יומיומי, כולל תא נפרד למחשב נייד, בד עמיד למים ורצועות מרופדות לנוחות מרבית.",
+    "description": "תיק LV באיכות סופר קופי.",
     "imageFolder": "images/bags",
     "imageCode": "ZT13362",
     "imageCount": 14,
-    "buyLink": "PASTE_PINYLINK_URL_HERE"
+    "buyLink": "https://s.flylinking.com/g-Q3IDODFPKM"
   },
   {
     "id": "watches-zt13481",
     "name": "שעון יד קלאסי",
     "category": "watches",
-    "price": 159,
+    "price": 305,
     "currency": "₪",
-    "description": "שעון יד אלגנטי עם רצועת עור, מנגנון קווארץ מדויק ועיצוב מינימליסטי המתאים לכל אירוע.",
+    "description": "שעון יד רולקס \n בתוספת 60 ₪ מגיע עם קופסא .",
     "imageFolder": "images/watches",
     "imageCode": "ZT13481",
     "imageCount": 7,
-    "buyLink": "PASTE_PINYLINK_URL_HERE"
+    "buyLink": "https://s.flylinking.com/g-CMXDU1Z2T5"
   }
 ]
