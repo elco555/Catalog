@@ -50,10 +50,17 @@ function initDrawer() {
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDrawer(); });
 }
 
+/* ===== עודכן: מוסיף גם דעיכה/הופעה חלקה של הפס העליון הצבעוני
+   בזמן גלילה, יחד עם הפס הדביק הלבן שנשאר עם הלוגו ===== */
 function initStickyBar() {
   const bar = document.getElementById('sticky-topbar');
+  const header = document.querySelector('.site-header');
   if (!bar) return;
-  window.addEventListener('scroll', () => bar.classList.toggle('visible', window.scrollY > 140));
+  window.addEventListener('scroll', () => {
+    const isScrolled = window.scrollY > 140;
+    bar.classList.toggle('visible', isScrolled);
+    if (header) header.classList.toggle('header-fading', isScrolled);
+  });
 }
 
 function initCatalogPage() {
@@ -130,47 +137,52 @@ function initProductPage() {
 async function loadProduct() {
   const params = new URLSearchParams(window.location.search);
   const id = params.get('id');
-  const res = await fetch('products.json');
-  const products = await res.json();
-  const product = products.find(p => p.id === id);
   const container = document.getElementById('product-container');
+  try {
+    const res = await fetch('products.json');
+    const products = await res.json();
+    const product = products.find(p => p.id === id);
 
-  if (!product) {
-    container.innerHTML = '<p style="padding:20px;">המוצר לא נמצא</p>';
-    return;
-  }
+    if (!product) {
+      container.innerHTML = '<p style="padding:20px;">המוצר לא נמצא</p>';
+      return;
+    }
 
-  const images = buildProductImages(product);
-  document.title = product.name + ' - עולם המותגים';
+    const images = buildProductImages(product);
+    document.title = product.name + ' - עולם המותגים';
 
-  const breadcrumb = document.getElementById('breadcrumb');
-  if (breadcrumb) {
-    breadcrumb.innerHTML = `
-      <a href="index.html">קטלוג</a> &nbsp;\u203a&nbsp;
-      <a href="index.html?category=${product.category}">${categoryNames[product.category] || ''}</a> &nbsp;\u203a&nbsp;
-      <span>${product.name}</span>`;
-  }
+    const breadcrumb = document.getElementById('breadcrumb');
+    if (breadcrumb) {
+      breadcrumb.innerHTML = `
+        <a href="index.html">קטלוג</a> &nbsp;\u203a&nbsp;
+        <a href="index.html?category=${product.category}">${categoryNames[product.category] || ''}</a> &nbsp;\u203a&nbsp;
+        <span>${product.name}</span>`;
+    }
 
-  container.innerHTML = `
-    <div class="gallery">
-      <div class="gallery-main">
-        <img id="main-image" src="${images[0]}" alt="${product.name}">
-        <span class="zoom-hint">🔍 לחץ להגדלה</span>
+    container.innerHTML = `
+      <div class="gallery">
+        <div class="gallery-main">
+          <img id="main-image" src="${images[0]}" alt="${product.name}">
+          <span class="zoom-hint">🔍 לחץ להגדלה</span>
+        </div>
+        <div class="gallery-thumbs">
+          ${images.map((img, i) => `<img src="${img}" class="${i === 0 ? 'active-thumb' : ''}" onclick="changeMainImage('${img}', this)">`).join('')}
+        </div>
       </div>
-      <div class="gallery-thumbs">
-        ${images.map((img, i) => `<img src="${img}" class="${i === 0 ? 'active-thumb' : ''}" onclick="changeMainImage('${img}', this)">`).join('')}
-      </div>
-    </div>
-    <div class="product-details">
-      <h2>${product.name}</h2>
-      <div class="product-price">${product.price} ${product.currency}</div>
-      <p>${product.description}</p>
-      <a href="#" class="buy-btn" onclick="trackClick('${product.id}', '${product.buyLink}'); return false;">קנה עכשיו</a>
-    </div>`;
+      <div class="product-details">
+        <h2>${product.name}</h2>
+        <div class="product-price">${product.price} ${product.currency}</div>
+        <p>${product.description}</p>
+        <a href="#" class="buy-btn" onclick="trackClick('${product.id}', '${product.buyLink}'); return false;">קנה עכשיו</a>
+      </div>`;
 
-  document.getElementById('main-image').addEventListener('click', () => {
-    openLightbox(document.getElementById('main-image').src, product.name);
-  });
+    document.getElementById('main-image').addEventListener('click', () => {
+      openLightbox(document.getElementById('main-image').src, product.name);
+    });
+  } catch (err) {
+    container.innerHTML = '<p class="empty-state">שגיאה בטעינת המוצר. נסה לרענן את הדף.</p>';
+    console.error(err);
+  }
 }
 
 function changeMainImage(src, thumb) {

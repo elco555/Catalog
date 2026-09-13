@@ -1,0 +1,98 @@
+/* =====================================================
+   עולם המותגים - קובץ תוספת עיצוב
+   קובץ זה נטען אחרי style.css ולכן "מנצח" אותו בכל
+   התנגשות. אין צורך לגעת בקובץ style.css הקיים.
+   ===================================================== */
+
+:root {
+  /* גוון מבוסס-לוגו לפס העליון - שנה כאן לגוון מדויק מתוך הלוגו שלך */
+  --brand-tone: #16324f;
+  --brand-tone-light: #2c5f8a;
+}
+
+/* -----------------------------------------------------
+   1. פס עליון בגוון ייחודי (שונה מרקע שאר האתר)
+------------------------------------------------------ */
+.site-header {
+  background: linear-gradient(135deg, var(--brand-tone) 0%, var(--brand-tone-light) 100%) !important;
+  position: relative;
+  z-index: 50;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+/* מצב זה מתווסף אוטומטית ע"י script.js בזמן גלילה
+   ויוצר את אפקט ה"עלייה והיעלמות" של הצבע */
+.site-header.header-fading {
+  opacity: 0;
+  transform: translateY(-24px);
+  pointer-events: none;
+}
+
+/* הפס הדביק שנשאר על רקע לבן עם הלוגו בלבד */
+.sticky-topbar {
+  background: #ffffff !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.sticky-topbar:not(.visible) {
+  opacity: 0;
+  transform: translateY(-12px);
+  pointer-events: none;
+}
+
+.sticky-topbar.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* -----------------------------------------------------
+   2. גריד מוצרים רספונסיבי
+   טלפון סטנדרטי -> 2 בשורה
+   מסכים גדולים יותר -> יותר עמודות אוטומטית
+------------------------------------------------------ */
+.products-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 14px !important;
+  padding: 16px !important;
+}
+
+@media (min-width: 640px) {
+  .products-grid { grid-template-columns: repeat(3, 1fr) !important; }
+}
+
+@media (min-width: 900px) {
+  .products-grid { grid-template-columns: repeat(4, 1fr) !important; }
+}
+
+@media (min-width: 1200px) {
+  .products-grid { grid-template-columns: repeat(5, 1fr) !important; }
+}
+
+@media (min-width: 1500px) {
+  .products-grid { grid-template-columns: repeat(6, 1fr) !important; }
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+}
+
+.product-thumb {
+  width: 100%;
+}
+
+.product-thumb img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* אותו כלל גם לתצוגת Skeleton כדי שלא "יקפוץ" הפריסה בזמן טעינה */
+#products-grid.products-grid .skeleton-card {
+  width: 100%;
+}
