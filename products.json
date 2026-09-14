@@ -96,6 +96,42 @@
     "buyLink": "https://s.flylinking.com/g-SA669Z6F38"
   },
   {
+    "id": "clothes-ZT13894",
+    "name": "סריג POLO",
+    "category": "clothes",
+    "price": 146,
+    "currency": "₪",
+    "description": "סריג POLO .",
+    "imageFolder": "images/clothes",
+    "imageCode": "ZT13894",
+    "imageCount": 12,
+    "buyLink": "https://s.flylinking.com/g-QVNTHAMTUQ"
+  },
+  {
+    "id": "clothes-ZT13942",
+    "name": "חולצת אדידס",
+    "category": "clothes",
+    "price": 109,
+    "currency": "₪",
+    "description": "חולצת אדידס .",
+    "imageFolder": "images/clothes",
+    "imageCode": "ZT13942",
+    "imageCount": 9,
+    "buyLink": "https://s.flylinking.com/g-ZYDG2U6ZY9"
+  },
+  {
+    "id": "clothes-ZT13805",
+    "name": "מעיל The North Face",
+    "category": "clothes",
+    "price": 195,
+    "currency": "₪",
+    "description": "מעיל The North Face .",
+    "imageFolder": "images/clothes",
+    "imageCode": "ZT13805",
+    "imageCount": 17,
+    "buyLink": "https://s.flylinking.com/g-AO1X062ASZ"
+  },
+  {
     "id": "electronics-HA2004",
     "name": "שעון חכם",
     "category": "electronics",
