@@ -10,6 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="header-upgrade.css">
+<link rel="stylesheet" href="site-additions.css">
 </head>
 <body>
 
@@ -25,7 +26,7 @@
 </header>
 
 <div class="sticky-topbar" id="sticky-topbar">
-  <img src="images/logo.png" alt="עולם המותגים" class="sticky-logo">
+  <a href="index.html" class="logo-home-link"><img src="images/logo.png" alt="עולם המותגים" class="site-logo"></a>
 </div>
 
 <div class="drawer-overlay" id="drawer-overlay"></div>
@@ -46,7 +47,9 @@
   <a href="index.html?category=Belts" class="drawer-link" data-category="Belts">חגורות</a>
   <a href="index.html?category=Scarves" class="drawer-link" data-category="Scarves">צעיפים</a>
 </nav>
-
+<section class="category-carousel-section">
+  <div id="story-carousel" class="story-carousel"></div>
+</section>
 <main id="products-grid" class="products-grid">
   <!-- המוצרים ייטענו כאן אוטומטית על ידי script.js -->
 </main>
@@ -56,5 +59,6 @@
 </footer>
 
 <script src="script.js"></script>
-</body>
+<script src="site-additions.js"></script>
+<body class="home-page"></body>
 </html>

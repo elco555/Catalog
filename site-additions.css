@@ -1,0 +1,152 @@
+/* -----------------------------------------------------
+   1. Story-Carousel של קטגוריות בעיגולים (לדף הבית)
+------------------------------------------------------ */
+.category-carousel-section {
+  padding: 18px 0 6px;
+}
+
+.story-carousel {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  padding: 4px 16px 14px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.story-carousel::-webkit-scrollbar {
+  height: 6px;
+}
+
+.story-carousel::-webkit-scrollbar-thumb {
+  background: #d8d8e6;
+  border-radius: 10px;
+}
+
+.story-item {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  scroll-snap-align: start;
+  width: 76px;
+}
+
+.story-ring {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-accent), var(--color-primary));
+  flex-shrink: 0;
+}
+
+.story-ring img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+  display: block;
+}
+
+.story-label {
+  font-size: 12px;
+  color: var(--color-text);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.story-item.active .story-ring {
+  background: linear-gradient(135deg, #ffd76a, var(--color-accent));
+}
+
+@media (min-width: 700px) {
+  .story-carousel { padding: 6px 30px 16px; gap: 24px; }
+  .story-item { width: 88px; }
+  .story-ring { width: 80px; height: 80px; }
+}
+
+/* -----------------------------------------------------
+   2. מוצרים נוספים שעשויים לעניין אותך (דף מוצר)
+------------------------------------------------------ */
+.related-products {
+  max-width: 1200px;
+  margin: 10px auto 40px;
+  padding: 0 20px;
+}
+
+.related-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 30px 0 16px;
+  color: var(--color-primary);
+}
+
+.related-scroller {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.related-scroller::-webkit-scrollbar {
+  height: 6px;
+}
+
+.related-scroller::-webkit-scrollbar-thumb {
+  background: #d8d8e6;
+  border-radius: 10px;
+}
+
+.related-card {
+  flex: 0 0 200px;
+  scroll-snap-align: start;
+}
+
+@media (max-width: 500px) {
+  .related-card { flex: 0 0 150px; }
+}
+
+/* -----------------------------------------------------
+   3. גודל הדר מותאם: קטן יותר בדף הבית, גדול יותר בשאר העמודים
+   (הכל רספונסיבי עם clamp - מתאים את עצמו לגודל המסך)
+------------------------------------------------------ */
+
+/* דף הבית - הדר קצת יותר קומפקטי מהגודל הנוכחי (84px) */
+body.home-page .site-header {
+  padding: clamp(22px, 6vw, 36px) 15px clamp(20px, 5vw, 34px);
+}
+
+body.home-page .site-header .site-logo {
+  height: clamp(52px, 14vw, 84px);
+}
+
+/* שאר העמודים (about / product) - הדר וללוגו גדולים יותר מהיום */
+body:not(.home-page) .site-header {
+  padding: clamp(30px, 7vw, 42px) 15px clamp(28px, 6vw, 40px);
+}
+
+body:not(.home-page) .site-header .site-logo {
+  height: clamp(60px, 18vw, 100px);
+}
+
+/* פס דביק (sticky-topbar) - לוגו קטן אך ברור בכל העמודים */
+.sticky-logo {
+  height: clamp(32px, 8vw, 44px);
+}
+
+/* הלוגו כקישור - שלא ייראה כמו קישור טקסט רגיל */
+.logo-home-link {
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
