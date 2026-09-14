@@ -1,7 +1,7 @@
 [
   {
-    "id": "shoes-zt13309",
-    "name": "נעלי ספורט קלאסיות",
+    "id": "shoes-ZT13309",
+    "name": "נעלי אדידס",
     "category": "shoes",
     "price": 195,
     "currency": "₪",
@@ -12,8 +12,8 @@
     "buyLink": "https://s.flylinking.com/g-3D4MWB7ZDB"
   },
   {
-    "id": "bags-zt13362",
-    "name": "תיק גב יומיומי",
+    "id": "bags-ZT13362",
+    "name": "תיק LV",
     "category": "bags",
     "price": 109,
     "currency": "₪",
@@ -24,8 +24,8 @@
     "buyLink": "https://s.flylinking.com/g-Q3IDODFPKM"
   },
   {
-    "id": "watches-zt13481",
-    "name": "שעון יד קלאסי",
+    "id": "watches-ZT13481",
+    "name": "שעון רולקס",
     "category": "watches",
     "price": 305,
     "currency": "₪",
@@ -34,5 +34,29 @@
     "imageCode": "ZT13481",
     "imageCount": 7,
     "buyLink": "https://s.flylinking.com/g-CMXDU1Z2T5"
+  },
+  {
+    "id": "watches-ZT9473",
+    "name": "שעון פטק פיליפ",
+    "category": "watches",
+    "price": 247,
+    "currency": "₪",
+    "description": "שעון פטק פיליפ \n בתוספת 60 ₪ מגיע עם קופסא .",
+    "imageFolder": "images/watches",
+    "imageCode": "ZT9473",
+    "imageCount": 25,
+    "buyLink": "https://s.flylinking.com/g-UJI8D3SYCI"
+  },
+  {
+    "id": "electronics-HA2004",
+    "name": "שעון חכם",
+    "category": "electronics",
+    "price": 259,
+    "currency": "₪",
+    "description": "שעון חכם באיכות גבוהה.",
+    "imageFolder": "images/electronics",
+    "imageCode": "HA2004",
+    "imageCount": 10,
+    "buyLink": "https://s.flylinking.com/g-BOCJPMI7R1"
   }
 ]

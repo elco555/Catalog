@@ -1,7 +1,7 @@
 const CONTACT_EMAIL = 'lhnn8229@gmail.com';
 
 const categoryNames = {
-  all: 'הכל', shoes: 'נעליים', bags: 'תיקים', clothes: 'בגדים', watches: 'שעונים'
+  all: 'הכל', shoes: 'נעליים', bags: 'תיקים', clothes: 'בגדים', watches: 'שעונים', electronics: ' אלקטרוניקה', jewelry: 'תכשיטים', Hats: 'כובעים', Sunglasses: 'משקפי שמש', Belts: 'חגורות', Scarves: 'צעיפים', 
 };
 
 let productsData = [];
