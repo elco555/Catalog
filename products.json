@@ -48,6 +48,18 @@
     "buyLink": "https://s.flylinking.com/g-UJI8D3SYCI"
   },
   {
+    "id": "watches-ZT9053",
+    "name": "שעון פטק פיליפ",
+    "category": "watches",
+    "price": 174,
+    "currency": "₪",
+    "description": "שעון פטק פיליפ באיכות גבוהה \n בתוספת 60 ₪ מגיע עם קופסא.",
+    "imageFolder": "images/watches",
+    "imageCode": "ZT9053",
+    "imageCount": 15,
+    "buyLink": "https://s.flylinking.com/g-EEQA8KRARO"
+  },
+  {
     "id": "electronics-HA2004",
     "name": "שעון חכם",
     "category": "electronics",
