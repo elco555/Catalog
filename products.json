@@ -24,6 +24,18 @@
     "buyLink": "https://s.flylinking.com/g-Q3IDODFPKM"
   },
   {
+    "id": "bags-ZT13870",
+    "name": "תיק שאנל",
+    "category": "bags",
+    "price": 109,
+    "currency": "₪",
+    "description": "תיק שאנל באיכות סופר קופי.",
+    "imageFolder": "images/bags",
+    "imageCode": "ZT13870",
+    "imageCount": 17,
+    "buyLink": "https://s.flylinking.com/g-IYXMGL5VS7"
+  },
+  {
     "id": "watches-ZT13481",
     "name": "שעון רולקס",
     "category": "watches",
@@ -130,6 +142,18 @@
     "imageCode": "ZT13805",
     "imageCount": 17,
     "buyLink": "https://s.flylinking.com/g-AO1X062ASZ"
+  },
+  {
+    "id": "clothes-ZT13612",
+    "name": "סריג POLO",
+    "category": "clothes",
+    "price": 182,
+    "currency": "₪",
+    "description": "סריג POLO .",
+    "imageFolder": "images/clothes",
+    "imageCode": "ZT13612",
+    "imageCount": 11,
+    "buyLink": "https://s.flylinking.com/g-T07O1WA01D"
   },
   {
     "id": "electronics-HA2004",
