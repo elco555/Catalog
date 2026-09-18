@@ -12,6 +12,18 @@
     "buyLink": "https://s.flylinking.com/g-3D4MWB7ZDB"
   },
   {
+    "id": "shoes-ZT13865",
+    "name": "כפכף הרמס",
+    "category": "shoes",
+    "price": 236,
+    "currency": "₪",
+    "description": "מידות 36-42 \n חומר החלק העליון של הנעל: עור אמיתי \n חומר הסוליה: EVA מגיע עם הקופסה המקורית.",
+    "imageFolder": "images/shoes",
+    "imageCode": "ZT13865",
+    "imageCount": 10,
+    "buyLink": "https://s.flylinking.com/g-R44LYOK4CZ"
+  },
+  {
     "id": "bags-ZT13362",
     "name": "תיק LV",
     "category": "bags",
