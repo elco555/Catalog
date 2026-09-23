@@ -75,6 +75,7 @@
 
 /* -----------------------------------------------------
    2. מוצרים נוספים שעשויים לעניין אותך (דף מוצר)
+   גלילה אנכית: רשת שגוללת למטה יחד עם שאר העמוד, ולא לרוחב
 ------------------------------------------------------ */
 .related-products {
   max-width: 1200px;
@@ -89,7 +90,6 @@
   color: var(--color-primary);
 }
 
-/* גלילה אנכית: רשת שגוללת למטה יחד עם שאר העמוד, ולא לרוחב */
 .related-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -164,16 +164,15 @@ body:not(.home-page) .site-header .site-logo {
   height: clamp(32px, 8vw, 44px);
 }
 
-/* הלוגו כקישור - שלא ייראה כמו קישור טקסט רגיל */
+/* הלוגו כקישור - שלא ייראה כמו קישור טקסט רגיל (גם בפס העליון וגם בפס הדביק) */
 .logo-home-link {
   display: inline-block;
   text-decoration: none;
   cursor: pointer;
 }
 
-
 /* -----------------------------------------------------
-   5. סינון לפי מותג (Brand Filter) - דף הבית
+   4. סינון לפי מותג (Brand Filter) - דף הבית
 ------------------------------------------------------ */
 .filter-bar {
   max-width: 1200px;
@@ -346,4 +345,120 @@ body:not(.home-page) .site-header .site-logo {
   background-color: rgba(255, 255, 255, 0.92);
   color: var(--color-primary);
   border: 1px solid rgba(26, 26, 46, 0.12);
+}
+
+/* -----------------------------------------------------
+   5. תצוגה מחולקת לקטגוריות בדף הבית (כאשר נבחר "הכל")
+   כל קטגוריה מקבלת כותרת ורשת מוצרים משלה, זו מתחת לזו,
+   במקום רשת אחת מעורבת של כל המוצרים.
+------------------------------------------------------ */
+#products-grid.grouped-view {
+  display: block !important;
+  padding: 16px !important;
+}
+
+.category-section {
+  margin-bottom: 34px;
+}
+
+.category-section:last-child {
+  margin-bottom: 10px;
+}
+
+.category-section-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin: 0 0 14px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #ececf5;
+}
+
+.category-products-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+@media (min-width: 640px) {
+  .category-products-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 900px) {
+  .category-products-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (min-width: 1200px) {
+  .category-products-grid { grid-template-columns: repeat(5, 1fr); }
+}
+
+@media (min-width: 1500px) {
+  .category-products-grid { grid-template-columns: repeat(6, 1fr); }
+}
+
+/* -----------------------------------------------------
+   6. גלריית תמונות בדף המוצר - חצים משני צידי התמונה + החלקה (swipe)
+------------------------------------------------------ */
+.gallery-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(26, 26, 46, 0.55);
+  color: #fff;
+  font-size: 20px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.gallery-arrow:hover {
+  background-color: rgba(26, 26, 46, 0.8);
+}
+
+.gallery-arrow:active {
+  transform: translateY(-50%) scale(0.92);
+}
+
+.gallery-arrow-prev { right: 10px; }
+.gallery-arrow-next { left: 10px; }
+
+@media (max-width: 500px) {
+  .gallery-arrow { width: 34px; height: 34px; font-size: 16px; }
+}
+
+/* -----------------------------------------------------
+   7. נקודות אינדיקציה על כרטיס מוצר בקטלוג (בלי כפתורים) -
+   מציגות שיש מספר תמונות שאפשר להחליק ביניהן על גבי התמונה
+------------------------------------------------------ */
+.thumb-dots {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.thumb-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.6);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.thumb-dot.active {
+  background-color: #fff;
+  transform: scale(1.3);
 }
