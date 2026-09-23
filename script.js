@@ -7,7 +7,7 @@ const categoryNames = {
 let productsData = [];
 
 function buildProductImages(product) {
-  return Array.from({ length: product.imageCount }, (_, i) => `${product.imageFolder}/${product.imageCode}-${i + 1}.jpg`);
+  return Array.from({ length: product.imageCount }, (_, i) => `${product.imageFolder}/${product.imageCode} (${i + 1}).jpg`);
 }
 
 function initDrawer() {
