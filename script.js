@@ -1,8 +1,11 @@
 const CONTACT_EMAIL = 'lhnn8229@gmail.com';
 
 const categoryNames = {
-  all: 'הכל', shoes: 'נעליים', bags: 'תיקים', clothes: 'בגדים', watches: 'שעונים', electronics: ' אלקטרוניקה', jewelry: 'תכשיטים', Hats: 'כובעים', Sunglasses: 'משקפי שמש', Belts: 'חגורות', Scarves: 'צעיפים', 
+  all: 'הכל', shoes: 'נעליים', bags: 'תיקים', clothes: 'בגדים', watches: 'שעונים', electronics: 'אלקטרוניקה', jewelry: 'תכשיטים', Hats: 'כובעים', Sunglasses: 'משקפי שמש', Belts: 'חגורות', Scarves: 'צעיפים',
 };
+
+/* חושף את מיפוי הקטגוריות גלובלית כדי ש-site-additions.js ישתמש באותו מקור ולא ייצור כפילות */
+window.categoryNames = categoryNames;
 
 let productsData = [];
 

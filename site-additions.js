@@ -1,5 +1,6 @@
-/* מיפוי שמות קטגוריות בעברית - תואם לתפריט הדראוור הקיים באתר */
-const CATEGORY_LABELS = {
+/* מיפוי שמות קטגוריות - נלקח ישירות מ-window.categoryNames שנחשף ב-script.js
+   כך שאין יותר שני מקורות נפרדים שעלולים להתבדר זה מזה */
+const CATEGORY_LABELS = window.categoryNames || {
   shoes: 'נעליים',
   bags: 'תיקים',
   clothes: 'בגדים',
