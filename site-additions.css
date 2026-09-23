@@ -89,31 +89,51 @@
   color: var(--color-primary);
 }
 
-.related-scroller {
-  display: flex;
+/* גלילה אנכית: רשת שגוללת למטה יחד עם שאר העמוד, ולא לרוחב */
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
-  overflow-x: auto;
-  padding-bottom: 10px;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
 }
 
-.related-scroller::-webkit-scrollbar {
-  height: 6px;
+@media (min-width: 640px) {
+  .related-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
-.related-scroller::-webkit-scrollbar-thumb {
-  background: #d8d8e6;
-  border-radius: 10px;
+@media (min-width: 900px) {
+  .related-grid { grid-template-columns: repeat(4, 1fr); }
 }
 
-.related-card {
-  flex: 0 0 200px;
-  scroll-snap-align: start;
+@media (min-width: 1300px) {
+  .related-grid { grid-template-columns: repeat(5, 1fr); }
 }
 
-@media (max-width: 500px) {
-  .related-card { flex: 0 0 150px; }
+.related-card { min-width: 0; }
+.related-card .product-card { height: 100%; }
+
+.related-empty {
+  color: var(--color-text-light);
+  font-size: 14px;
+  padding: 16px 0 30px;
+}
+
+.related-load-more {
+  display: block;
+  margin: 24px auto 10px;
+  background-color: #fff;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
+  padding: 11px 26px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.related-load-more:hover {
+  background-color: var(--color-primary);
+  color: #fff;
 }
 
 /* -----------------------------------------------------
@@ -149,4 +169,181 @@ body:not(.home-page) .site-header .site-logo {
   display: inline-block;
   text-decoration: none;
   cursor: pointer;
+}
+
+
+/* -----------------------------------------------------
+   5. סינון לפי מותג (Brand Filter) - דף הבית
+------------------------------------------------------ */
+.filter-bar {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px 10px;
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  z-index: 55;
+}
+
+.brand-filter-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #fff;
+  border: 1.5px solid #e0e0ea;
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 9px 16px;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.brand-filter-toggle:hover {
+  border-color: var(--color-primary);
+}
+
+.brand-filter-toggle.has-selection {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+
+.brand-filter-toggle .chevron {
+  font-size: 11px;
+  transition: transform 0.25s ease;
+}
+
+.brand-filter-toggle[aria-expanded="true"] .chevron {
+  transform: rotate(180deg);
+}
+
+.brand-filter-count {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 10px;
+  background-color: var(--color-accent);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.brand-filter-toggle.has-selection .brand-filter-count {
+  background-color: #fff;
+  color: var(--color-accent);
+}
+
+.brand-filter-panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 16px;
+  width: min(300px, 86vw);
+  background-color: #fff;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  padding: 14px;
+  z-index: 130;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.brand-filter-panel.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.brand-filter-list {
+  max-height: 280px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.brand-filter-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 6px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+.brand-filter-item:hover {
+  background-color: #f6f6fb;
+}
+
+.brand-filter-item input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+}
+
+.brand-filter-item-label {
+  flex-grow: 1;
+}
+
+.brand-filter-item-count {
+  color: var(--color-text-light);
+  font-size: 12px;
+}
+
+.brand-filter-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #eee;
+}
+
+.brand-filter-clear,
+.brand-filter-apply {
+  flex: 1;
+  border: none;
+  border-radius: 20px;
+  padding: 9px 12px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.brand-filter-clear {
+  background-color: #f0f0f5;
+  color: var(--color-text);
+}
+
+.brand-filter-clear:hover {
+  background-color: #e6e6f0;
+}
+
+.brand-filter-apply {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+.brand-filter-apply:hover {
+  background-color: var(--color-accent);
+}
+
+/* תג מותג על כרטיס מוצר - פינה שמאלית תחתונה, שונה מתג הקטגוריה (ימין למעלה) */
+.brand-badge {
+  top: auto;
+  right: auto;
+  bottom: 10px;
+  left: 10px;
+  background-color: rgba(255, 255, 255, 0.92);
+  color: var(--color-primary);
+  border: 1px solid rgba(26, 26, 46, 0.12);
 }

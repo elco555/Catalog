@@ -7,7 +7,54 @@ const categoryNames = {
 /* חושף את מיפוי הקטגוריות גלובלית כדי ש-site-additions.js ישתמש באותו מקור ולא ייצור כפילות */
 window.categoryNames = categoryNames;
 
+/* מיפוי שמות מותגים - שדה brand בכל מוצר יכול להכיל כמה מותגים מופרדים בפסיק (למשל סט משולב) */
+const BRAND_LABELS = {
+  adidas: 'אדידס',
+  hermes: 'הרמס',
+  lv: 'לואי ויטון',
+  chanel: 'שאנל',
+  fendi: 'פנדי',
+  dior: 'דיאור',
+  rolex: 'רולקס',
+  patek_philippe: 'פטק פיליפ',
+  tous: 'TOUS',
+  polo: 'פולו',
+  north_face: 'The North Face',
+  generic: 'ללא מותג',
+};
+window.BRAND_LABELS = BRAND_LABELS;
+
+/* מחלץ מהמוצר מערך מותגים נקי (תומך בשדה brand עם כמה מותגים מופרדים בפסיק) */
+function getProductBrands(product) {
+  if (!product || !product.brand) return [];
+  return String(product.brand).split(',').map((b) => b.trim()).filter(Boolean);
+}
+window.getProductBrands = getProductBrands;
+
+function brandLabel(brandKey) {
+  return BRAND_LABELS[brandKey] || brandKey;
+}
+window.brandLabel = brandLabel;
+
 let productsData = [];
+let activeCategory = 'all';
+let activeBrands = [];
+
+function applyFilters() {
+  renderProducts(activeCategory, activeBrands);
+  const url = new URL(window.location);
+  url.searchParams.set('category', activeCategory);
+  if (activeBrands.length) url.searchParams.set('brand', activeBrands.join(','));
+  else url.searchParams.delete('brand');
+  window.history.replaceState({}, '', url);
+}
+window.applyFilters = applyFilters;
+window.getActiveCategory = () => activeCategory;
+window.getActiveBrands = () => activeBrands.slice();
+window.setActiveBrands = function (brands) {
+  activeBrands = Array.isArray(brands) ? brands : [];
+  applyFilters();
+};
 
 function buildProductImages(product) {
   return Array.from({ length: product.imageCount }, (_, i) => `${product.imageFolder}/${product.imageCode} (${i + 1}).jpg`);
@@ -41,11 +88,9 @@ function initDrawer() {
         e.preventDefault();
         document.querySelectorAll('.drawer-link').forEach(l => l.classList.remove('active'));
         link.classList.add('active');
-        renderProducts(category);
+        activeCategory = category;
+        applyFilters();
         closeDrawer();
-        const url = new URL(window.location);
-        url.searchParams.set('category', category);
-        window.history.replaceState({}, '', url);
       }
     });
   });
@@ -78,9 +123,11 @@ async function loadProducts() {
     const res = await fetch('products.json');
     productsData = await res.json();
     const params = new URLSearchParams(window.location.search);
-    const initialCategory = params.get('category') || 'all';
-    document.querySelectorAll('.drawer-link').forEach(l => l.classList.toggle('active', l.dataset.category === initialCategory));
-    renderProducts(initialCategory);
+    activeCategory = params.get('category') || 'all';
+    activeBrands = (params.get('brand') || '').split(',').map((b) => b.trim()).filter(Boolean);
+    document.querySelectorAll('.drawer-link').forEach(l => l.classList.toggle('active', l.dataset.category === activeCategory));
+    renderProducts(activeCategory, activeBrands);
+    document.dispatchEvent(new CustomEvent('products-data-ready', { detail: { products: productsData } }));
   } catch (err) {
     document.getElementById('products-grid').innerHTML = '<p class="empty-state">שגיאה בטעינת המוצרים. נסה לרענן את הדף.</p>';
     console.error(err);
@@ -98,22 +145,27 @@ function showSkeleton() {
   }
 }
 
-function renderProducts(category) {
+function renderProducts(category, brands = []) {
   const grid = document.getElementById('products-grid');
   grid.innerHTML = '';
-  const filtered = category === 'all' ? productsData : productsData.filter(p => p.category === category);
+  let filtered = category === 'all' ? productsData : productsData.filter(p => p.category === category);
+  if (brands && brands.length) {
+    filtered = filtered.filter(p => getProductBrands(p).some(b => brands.includes(b)));
+  }
   if (filtered.length === 0) {
-    grid.innerHTML = '<p class="empty-state">לא נמצאו מוצרים בקטגוריה זו.</p>';
+    grid.innerHTML = '<p class="empty-state">לא נמצאו מוצרים התואמים את הסינון שנבחר.</p>';
     return;
   }
   filtered.forEach(product => {
     const thumbnail = buildProductImages(product)[0];
+    const productBrands = getProductBrands(product);
     const card = document.createElement('div');
     card.className = 'product-card';
     card.innerHTML = `
       <div class="product-thumb" onclick="goToProduct('${product.id}')">
         <img src="${thumbnail}" alt="${product.name}">
         <span class="product-badge">${categoryNames[product.category] || ''}</span>
+        ${productBrands.length ? `<span class="product-badge brand-badge">${brandLabel(productBrands[0])}</span>` : ''}
       </div>
       <div class="product-info">
         <h3>${product.name}</h3>

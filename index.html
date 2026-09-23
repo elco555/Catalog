@@ -50,6 +50,24 @@
 <section class="category-carousel-section">
   <div id="story-carousel" class="story-carousel"></div>
 </section>
+
+<section class="filter-bar" id="filter-bar">
+  <button class="brand-filter-toggle" id="brand-filter-toggle" type="button" aria-expanded="false" aria-controls="brand-filter-panel">
+    <span>סינון לפי מותג</span>
+    <span class="brand-filter-count" id="brand-filter-count"></span>
+    <span class="chevron">▾</span>
+  </button>
+  <div class="brand-filter-panel" id="brand-filter-panel">
+    <div class="brand-filter-list" id="brand-filter-list">
+      <!-- רשימת המותגים תיטען כאן אוטומטית לפי הנתונים ב-products.json -->
+    </div>
+    <div class="brand-filter-actions">
+      <button type="button" class="brand-filter-clear" id="brand-filter-clear">נקה בחירה</button>
+      <button type="button" class="brand-filter-apply" id="brand-filter-apply">הצג תוצאות</button>
+    </div>
+  </div>
+</section>
+
 <main id="products-grid" class="products-grid">
   <!-- המוצרים ייטענו כאן אוטומטית על ידי script.js -->
 </main>
