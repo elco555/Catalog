@@ -4,9 +4,11 @@ backend:
   branch: main
 
 # base_url ו-auth_endpoint נדרשים רק אם משתמשים בשרת OAuth עצמאי (למשל דרך Cloudflare Worker / Vercel)
-# אם מארחים את האתר ב-Netlify במקביל, אפשר למחוק את שתי השורות האלה ולהשתמש ב-OAuth המובנה של Netlify.
+# מכיוון שהאתר מחובר עכשיו ל-Netlify עם OAuth מובנה, השורות האלה לא נחוצות.
 # base_url: "https://YOUR-OAUTH-PROXY-URL"
 # auth_endpoint: "auth"
+
+logo_url: "https://olamhmotgim.netlify.app/images/logo.png"
 
 publish_mode: simple
 media_folder: "images/uploads"
