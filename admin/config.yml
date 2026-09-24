@@ -64,12 +64,18 @@ collections:
               - label: "תיאור"
                 name: "description"
                 widget: "text"
-              - label: "תמונות המוצר (מומלץ - העלאה ישירה כאן)"
+              - label: "תמונות המוצר (בחירה מרובה - סמן כמה תמונות בבת אחת)"
                 name: "images"
                 widget: "list"
                 required: false
-                hint: "העלה כאן את כל תמונות המוצר לפי הסדר הרצוי. זה שומר אוטומטית את הנתיבים הנכונים לתמונות שהועלו - השתמש בשדה הזה למוצרים חדשים, ואל תמלא את שלושת השדות הבאים (תיקייה/קוד/כמות)."
-                field: { label: "תמונה", name: "image", widget: "image" }
+                hint: "לחץ 'הוסף' פעם אחת, ובחלון שנפתח החזק Ctrl (או Cmd במק) ולחץ על כמה תמונות בבת אחת כדי לבחור את כולן יחד, או העלה כמה קבצים במקביל בגרירה. הן יתווספו כולן לפי הסדר."
+                field:
+                  label: "תמונה"
+                  name: "image"
+                  widget: "image"
+                  media_library:
+                    config:
+                      multiple: true
               - label: "תיקיית תמונות (רק למוצרים ישנים)"
                 name: "imageFolder"
                 widget: "string"
