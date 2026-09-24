@@ -1,0 +1,79 @@
+backend:
+  name: github
+  repo: elco555/Catalog
+  branch: main
+
+# base_url ו-auth_endpoint נדרשים רק אם משתמשים בשרת OAuth עצמאי (למשל דרך Cloudflare Worker / Vercel)
+# אם מארחים את האתר ב-Netlify במקביל, אפשר למחוק את שתי השורות האלה ולהשתמש ב-OAuth המובנה של Netlify.
+# base_url: "https://YOUR-OAUTH-PROXY-URL"
+# auth_endpoint: "auth"
+
+publish_mode: simple
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "products"
+    label: "מוצרים בקטלוג"
+    files:
+      - file: "products.json"
+        label: "כל המוצרים"
+        name: "products"
+        format: "json"
+        fields:
+          - label: "רשימת מוצרים"
+            name: "products"
+            widget: "list"
+            summary: "{{fields.name}} — {{fields.price}} ₪"
+            fields:
+              - label: "מזהה ייחודי (id)"
+                name: "id"
+                widget: "string"
+                hint: "פורמט: category-קוד, למשל shoes-ZT13309. לא לשנות במוצר קיים!"
+              - label: "שם המוצר"
+                name: "name"
+                widget: "string"
+              - label: "קטגוריה"
+                name: "category"
+                widget: "select"
+                options:
+                  - { label: "נעליים", value: "shoes" }
+                  - { label: "תיקים", value: "bags" }
+                  - { label: "בגדים", value: "clothes" }
+                  - { label: "שעונים", value: "watches" }
+                  - { label: "אלקטרוניקה", value: "electronics" }
+                  - { label: "תכשיטים", value: "jewelry" }
+                  - { label: "כובעים", value: "Hats" }
+                  - { label: "משקפי שמש", value: "Sunglasses" }
+                  - { label: "חגורות", value: "Belts" }
+                  - { label: "צעיפים", value: "Scarves" }
+              - label: "מותג (brand)"
+                name: "brand"
+                widget: "string"
+                hint: "מפתח באנגלית בלבד: adidas, hermes, lv, chanel, fendi, dior, rolex, patek_philippe, tous, polo, north_face, generic. אפשר כמה מופרדים בפסיק (למשל chanel,fendi)"
+              - label: "מחיר"
+                name: "price"
+                widget: "number"
+                value_type: "int"
+              - label: "מטבע"
+                name: "currency"
+                widget: "string"
+                default: "₪"
+              - label: "תיאור"
+                name: "description"
+                widget: "text"
+              - label: "תיקיית תמונות"
+                name: "imageFolder"
+                widget: "string"
+                hint: "למשל images/shoes"
+              - label: "קוד תמונה"
+                name: "imageCode"
+                widget: "string"
+                hint: "אותו קוד ששמת בשמות קבצי התמונה שהעלית ידנית לתיקייה"
+              - label: "כמות תמונות"
+                name: "imageCount"
+                widget: "number"
+                value_type: "int"
+              - label: "קישור לקנייה (Flylinking)"
+                name: "buyLink"
+                widget: "string"
