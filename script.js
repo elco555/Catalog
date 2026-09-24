@@ -4,10 +4,8 @@ const categoryNames = {
   all: 'הכל', shoes: 'נעליים', bags: 'תיקים', clothes: 'בגדים', watches: 'שעונים', electronics: 'אלקטרוניקה', jewelry: 'תכשיטים', Hats: 'כובעים', Sunglasses: 'משקפי שמש', Belts: 'חגורות', Scarves: 'צעיפים',
 };
 
-/* חושף את מיפוי הקטגוריות גלובלית כדי ש-site-additions.js ישתמש באותו מקור ולא ייצור כפילות */
 window.categoryNames = categoryNames;
 
-/* מיפוי שמות מותגים - שדה brand בכל מוצר יכול להכיל כמה מותגים מופרדים בפסיק (למשל סט משולב) */
 const BRAND_LABELS = {
   adidas: 'אדידס',
   hermes: 'הרמס',
@@ -20,14 +18,14 @@ const BRAND_LABELS = {
   tous: 'TOUS',
   polo: 'פולו',
   north_face: 'The North Face',
+  armani: 'ארמני',
   generic: 'ללא מותג',
 };
 window.BRAND_LABELS = BRAND_LABELS;
 
-/* מחלץ מהמוצר מערך מותגים נקי (תומך בשדה brand עם כמה מותגים מופרדים בפסיק) */
 function getProductBrands(product) {
   if (!product || !product.brand) return [];
-  return String(product.brand).split(',').map((b) => b.trim()).filter(Boolean);
+  return String(product.brand).split(',').map((b) => b.trim().toLowerCase()).filter(Boolean);
 }
 window.getProductBrands = getProductBrands;
 
@@ -36,8 +34,6 @@ function brandLabel(brandKey) {
 }
 window.brandLabel = brandLabel;
 
-/* מחלץ את מערך המוצרים מקובץ products.json בין אם הוא מערך גולמי [...]
-   ובין אם הוא עטוף בתור {"products": [...]} (הפורמט שבו שומר Decap CMS) */
 function extractProductsList(data) {
   if (Array.isArray(data)) return data;
   if (data && Array.isArray(data.products)) return data.products;
@@ -66,6 +62,9 @@ window.setActiveBrands = function (brands) {
 };
 
 function buildProductImages(product) {
+  if (Array.isArray(product.images) && product.images.length) {
+    return product.images;
+  }
   return Array.from({ length: product.imageCount }, (_, i) => `${product.imageFolder}/${product.imageCode} (${i + 1}).jpg`);
 }
 window.buildProductImages = buildProductImages;
