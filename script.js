@@ -36,6 +36,15 @@ function brandLabel(brandKey) {
 }
 window.brandLabel = brandLabel;
 
+/* מחלץ את מערך המוצרים מקובץ products.json בין אם הוא מערך גולמי [...]
+   ובין אם הוא עטוף בתור {"products": [...]} (הפורמט שבו שומר Decap CMS) */
+function extractProductsList(data) {
+  if (Array.isArray(data)) return data;
+  if (data && Array.isArray(data.products)) return data.products;
+  return [];
+}
+window.extractProductsList = extractProductsList;
+
 let productsData = [];
 let activeCategory = 'all';
 let activeBrands = [];
@@ -99,8 +108,6 @@ function initDrawer() {
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDrawer(); });
 }
 
-/* ===== עודכן: מוסיף גם דעיכה/הופעה חלקה של הפס העליון הצבעוני
-   בזמן גלילה, יחד עם הפס הדביק הלבן שנשאר עם הלוגו ===== */
 function initStickyBar() {
   const bar = document.getElementById('sticky-topbar');
   const header = document.querySelector('.site-header');
@@ -122,7 +129,8 @@ async function loadProducts() {
   showSkeleton();
   try {
     const res = await fetch('products.json');
-    productsData = await res.json();
+    const data = await res.json();
+    productsData = extractProductsList(data);
     const params = new URLSearchParams(window.location.search);
     activeCategory = params.get('category') || 'all';
     activeBrands = (params.get('brand') || '').split(',').map((b) => b.trim()).filter(Boolean);
@@ -147,9 +155,6 @@ function showSkeleton() {
   }
 }
 
-/* בונה כרטיס מוצר בודד - פונקציה משותפת שמשמשת גם בתצוגה שטוחה וגם בתצוגה המחולקת לקטגוריות.
-   התמונה הראשית בכרטיס תומכת בהחלקה (swipe) ימינה/שמאלה למעבר בין תמונות המוצר, בלי כפתורים -
-   רק אם למוצר יש יותר מתמונה אחת. הקלקה רגילה (בלי החלקה) עדיין פותחת את דף המוצר. */
 function buildProductCard(product) {
   const images = buildProductImages(product);
   const productBrands = getProductBrands(product);
@@ -244,9 +249,6 @@ function buildProductCard(product) {
   return card;
 }
 
-/* מציג את המוצרים בדף הבית: כאשר הקטגוריה הנבחרת היא "הכל" - המוצרים מחולקים
-   לסקציות לפי קטגוריה (כל קטגוריה עם כותרת ורשת משלה). כאשר נבחרה קטגוריה
-   ספציפית - מוצגת רשת שטוחה רגילה, כמו קודם. */
 function renderProducts(category, brands = []) {
   const grid = document.getElementById('products-grid');
   grid.innerHTML = '';
@@ -315,7 +317,8 @@ async function loadProduct() {
   const container = document.getElementById('product-container');
   try {
     const res = await fetch('products.json');
-    const products = await res.json();
+    const data = await res.json();
+    const products = extractProductsList(data);
     const product = products.find(p => p.id === id);
 
     if (!product) {
@@ -362,8 +365,6 @@ async function loadProduct() {
   }
 }
 
-/* ניהול הגלריה בדף המוצר: מעבר בין תמונות בלחיצה על חצים בשני צידי התמונה,
-   או בהחלקה (swipe) ימינה/שמאלה על התמונה הראשית - וגם קליק על התמונות הקטנות. */
 function initProductGallery(images, productName) {
   let currentIndex = 0;
   const mainImg = document.getElementById('main-image');

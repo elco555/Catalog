@@ -24,17 +24,21 @@ function productBrandsOf(product) {
   return String(product.brand).split(',').map((b) => b.trim()).filter(Boolean);
 }
 
-/* -----------------------------------------------------
-   1. Story-Carousel קטגוריות בעיגולים - רק בדף הבית
-   דורש קונטיינר: <div class="story-carousel" id="story-carousel"></div>
------------------------------------------------------- */
+function extractProductsListLocal(data) {
+  if (typeof window.extractProductsList === 'function') return window.extractProductsList(data);
+  if (Array.isArray(data)) return data;
+  if (data && Array.isArray(data.products)) return data.products;
+  return [];
+}
+
 async function initCategoryCarousel() {
   const wrap = document.getElementById('story-carousel');
   if (!wrap) return;
 
   try {
     const res = await fetch('products.json');
-    const products = await res.json();
+    const data = await res.json();
+    const products = extractProductsListLocal(data);
 
     const seen = new Set();
     const categories = [];
@@ -77,10 +81,6 @@ async function initCategoryCarousel() {
   }
 }
 
-/* -----------------------------------------------------
-   2. סינון לפי מותג (Brand Filter) - רק בדף הבית
-   דורש קונטיינר: #brand-filter-toggle, #brand-filter-panel, #brand-filter-list
------------------------------------------------------- */
 async function initBrandFilter() {
   const toggle = document.getElementById('brand-filter-toggle');
   const panel = document.getElementById('brand-filter-panel');
@@ -93,7 +93,8 @@ async function initBrandFilter() {
   let products = [];
   try {
     const res = await fetch('products.json');
-    products = await res.json();
+    const data = await res.json();
+    products = extractProductsListLocal(data);
   } catch (err) {
     console.error('שגיאה בטעינת נתוני מותגים:', err);
     return;
@@ -207,12 +208,6 @@ async function initBrandFilter() {
   }
 }
 
-/* -----------------------------------------------------
-   3. מוצרים נוספים שעשויים לעניין אותך - רק בדף מוצר
-   דורש קונטיינר: <div id="related-products"></div>
-   מוצג כרשת אנכית (grid) שנגללת למטה, מבוססת על אותה קטגוריה
-   או אותו מותג של המוצר הנוכחי (OR), עם כפתור "טען עוד".
------------------------------------------------------- */
 const RELATED_INITIAL_COUNT = 8;
 const RELATED_STEP = 8;
 
@@ -226,7 +221,8 @@ async function initRelatedProducts() {
 
   try {
     const res = await fetch('products.json');
-    const products = await res.json();
+    const data = await res.json();
+    const products = extractProductsListLocal(data);
     const current = products.find((p) => p.id === currentId);
     if (!current) return;
 
@@ -296,10 +292,6 @@ async function initRelatedProducts() {
   }
 }
 
-/* -----------------------------------------------------
-   4. אפקט "מתכווץ בגלילה" עדין להדר בדף הבית בלבד
-   (מתווסף מעל האפקט header-fading הקיים, לא מחליף אותו)
------------------------------------------------------- */
 function initHomeHeaderShrink() {
   if (!document.body.classList.contains('home-page')) return;
   const header = document.querySelector('.site-header');
